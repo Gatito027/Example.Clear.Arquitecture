@@ -1,0 +1,6 @@
+@Example.Clear.Arquitecture_HostAddress = http://localhost:5015
+
+GET {{Example.Clear.Arquitecture_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
