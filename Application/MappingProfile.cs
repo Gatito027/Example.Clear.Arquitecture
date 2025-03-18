@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entities;
 
 namespace Application
 {

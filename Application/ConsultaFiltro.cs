@@ -1,10 +1,11 @@
-﻿using MediatR;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Domain.Entities;
+using MediatR;
+using Domain.Persistencia;
 
 namespace Application
 {
-    class ConsultaFiltro
+    public class ConsultaFiltro
     {
         public class LibroUnico : IRequest<LibroMaterialDto>
         {

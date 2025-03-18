@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    class LibreriaMaterial
+    public class LibreriaMaterial
     {
         [Key]
         public Guid? LibreriaMateriaID { get; set; }

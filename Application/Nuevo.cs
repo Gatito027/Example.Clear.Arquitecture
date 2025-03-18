@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using Domain.Entities;
+using FluentValidation;
 using MediatR;
+using Domain.Persistencia;
 
 namespace Application
 {
-    class Nuevo
+    public class Nuevo
     {
         public class Ejecuta : IRequest
         {

@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using MediatR;
-using FluentValidation;
+using Application;
 
 namespace Infrastructure.Data
 {

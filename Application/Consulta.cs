@@ -1,12 +1,11 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Domain.Entities;
+using Domain.Persistencia;
+using AutoMapper;
 
 namespace Application
 {
-    public class Consulta
+    public class Consulta : IRequest<LibreriaMaterial>
     {
         public class Ejecuta : IRequest<List<LibroMaterialDto>>
         {

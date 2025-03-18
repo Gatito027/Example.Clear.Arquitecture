@@ -1,6 +1,6 @@
 ﻿namespace Application
 {
-    class LibroMaterialDto
+    public class LibroMaterialDto
     {
         public Guid? LibreriaMateriaId { get; set; }
         public string Titulo { get; set; }
