@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Application;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Domain.Persistencia;
 
 namespace Infrastructure.Data
 {
@@ -9,35 +12,37 @@ namespace Infrastructure.Data
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo>());
+            // Configuración de controladores y validaciones usando FluentValidation
+            services.AddControllers()
+                .AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo>());
 
+            // Configuración de DbContext con conexión a SQL Server
             services.AddDbContext<ContextoLibreria>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));//,
-                                                                                              //new MySqlServerVersion(new Version(8, 0, 40))));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            //agregar servicios de CORS
+            // Configuración de servicios de CORS
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigins",
-                    builder =>
-                    {
-                        builder.WithOrigins("https://example.com", "https://another-example.com")
-                               .AllowAnyHeader()
-                               .AllowAnyMethod()
-                               .AllowCredentials();
-                    });
+                options.AddPolicy("AllowSpecificOrigins", builder =>
+                {
+                    builder.WithOrigins("https://example.com", "https://another-example.com")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials();
+                });
 
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
-                    });
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
             });
 
-            //agregamos MediatR como servicio
+            // Registro de MediatR como servicio
             services.AddMediatR(typeof(Nuevo.Manejador).Assembly);
+
+            // Registro de AutoMapper para consultas
             services.AddAutoMapper(typeof(Consulta.Manejador));
 
             return services;
